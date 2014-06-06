@@ -1,10 +1,11 @@
 var app = NSApplication.sharedApplication(),
     bundle = NSBundle.mainBundle(),
     icon;
-if (app.applicationName() === 'Sketch') {
-    icon = [bundle pathForResource:@"app" ofType:@"icns"];
-} else {
+
+if (app.applicationName() === 'Sketch Beta') {
     icon = [bundle pathForResource:@"beta" ofType:@"icns"];
+} else {
+    icon = [bundle pathForResource:@"app" ofType:@"icns"];
 }
 
 var img = NSImage.alloc().initByReferencingFile(icon);
