@@ -1,0 +1,47 @@
+// Preview in Dock (shift command d)
+
+var app = NSApplication.sharedApplication();
+
+/**
+ * Sets application icon from current artboard
+ */
+setAppIconImage = function () {
+    var artboard = getCurrentArtboard(),
+        imgFile = '/tmp/dockpreview-appimage.png';
+    [doc saveArtboardOrSlice:artboard toFile:imgFile];
+    var img = NSImage.alloc().initByReferencingFile(imgFile);
+    [app setApplicationIconImage:img];
+};
+
+/**
+ * Restores application icon to original
+ */
+restoreAppIconImage = function () {
+    var bundle = NSBundle.mainBundle(),
+    icon = [bundle pathForResource:@"app" ofType:@"icns"],
+    img = NSImage.alloc().initByReferencingFile(icon);
+    [app setApplicationIconImage:img];
+};
+
+/**
+ * Get the current artboard from current page
+ * @return {MSArtboardGroup} The current artboard
+ */
+getCurrentArtboard = function () {
+    var page = [doc currentPage]
+    return [page currentArtboard];
+};
+
+// If this isn't going to work for Sketch from App Store, notice me.
+// This function is never run.
+/*runMethodSandbox = function (method) {
+    if(in_sandbox()) {
+        sandboxAccess.accessFilePath_withBlock_persistPermission(paths.temp, method, true);
+    } else {
+        method();
+    }
+}*/
+
+setAppIconImage();
+
+
