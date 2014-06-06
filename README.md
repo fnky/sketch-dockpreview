@@ -29,5 +29,5 @@ If you'd like a different shortcut, you can change the `.sketchplugin` source an
 
 ## FAQ
 
-**How can I restore the icon back to Sketch's?**  
+**How can I restore the icon back to Sketch's?**
 For now, the only way is to quit and restart Sketch.
