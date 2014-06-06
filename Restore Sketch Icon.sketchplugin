@@ -1,0 +1,6 @@
+var app = NSApplication.sharedApplication(),
+    bundle = NSBundle.mainBundle(),
+    icon = [bundle pathForResource:@"app" ofType:@"icns"],
+    img = NSImage.alloc().initByReferencingFile(icon);
+
+[app setApplicationIconImage:img];
