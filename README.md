@@ -26,8 +26,5 @@ Press `⇧⌘D` (*Shift + Command + D*) to preview your work in the dock.Artboar
 If you'd like a different shortcut, you can change the `.sketchplugin` source and define it in the brackets of the first comment:
 
     // Preview in Dock (shift command d)
-
-## FAQ
-
-**How can I restore the icon back to Sketch's?**  
-For now, the only way is to quit and restart Sketch.
+    
+To restore the icon back to the default Sketch icon, go to `Plugins > Restore Sketch icon`. If you quit Sketch, the icon will automatically restore by itself.
