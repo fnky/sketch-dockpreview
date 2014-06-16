@@ -37,7 +37,7 @@ var dockpreview = {
     restoreAppIconImage: function () {
         var bundle = NSBundle.mainBundle(),
             icon;
-        if (app.applicationName() === 'Sketch Beta') {
+        if (app.applicationName() == 'Sketch Beta') {
             icon = [bundle pathForResource:@"beta" ofType:@"icns"];
         } else {
             icon = [bundle pathForResource:@"app" ofType:@"icns"];
