@@ -1,12 +1,3 @@
-var app = NSApplication.sharedApplication(),
-    bundle = NSBundle.mainBundle(),
-    icon;
+#import 'dockpreview.js'
 
-if (app.applicationName() === 'Sketch Beta') {
-    icon = [bundle pathForResource:@"beta" ofType:@"icns"];
-} else {
-    icon = [bundle pathForResource:@"app" ofType:@"icns"];
-}
-
-var img = NSImage.alloc().initByReferencingFile(icon);
-[app setApplicationIconImage:img];
+dockpreview.restoreAppIconImage();
