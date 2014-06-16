@@ -8,7 +8,7 @@ var dockpreview = {
     createFolder: function (path) {
         var file_manager = [NSFileManager defaultManager];
         this.runMethodSandbox(path, function () {
-            [file_manager createDirectoryAtURL:path
+            [file_manager createDirectoryAtPath:path
                 withIntermediateDirectories:true
                 attributes:nil
                 error:nil];
@@ -16,17 +16,16 @@ var dockpreview = {
     },
 
     createTempFolder: function() {
-        var guid = NSProcessInfo.processInfo().globallyUniqueString();
-        var tmpPath = NSTemporaryDirectory();
-        tmpPath = tmpPath.stringByAppendingPathComponent(guid);
-        var tmpURL = [NSURL fileURLWithPath:tmpPath isDirectory:true];
-        this.createFolder(tmpURL);
+        var guid = NSProcessInfo.processInfo().globallyUniqueString(),
+            tmpPath = NSTemporaryDirectory().stringByAppendingPathComponent(guid);
+        //var tmpURL = [NSURL fileURLWithPath:tmpPath isDirectory:true];
+        this.createFolder(tmpPath);
         temp.path = tmpPath;
     },
 
     setAppIconImage: function() {
         var artboard = this.getCurrentArtboard(),
-        imgFile = temp.path + '/dockpreview-preview.png';
+        imgFile = temp.path + '/dockpreview-preview.tmp.png';
         this.runMethodSandbox(imgFile, function () {
             [doc saveArtboardOrSlice:artboard toFile:imgFile];
         });
