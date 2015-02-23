@@ -1,4 +1,4 @@
-#import 'sandbox.js'
+@import 'sandbox.js'
 
 var app = NSApplication.sharedApplication();
 

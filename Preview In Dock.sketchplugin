@@ -1,5 +1,5 @@
 // Preview in Dock (shift command d)
 
-#import 'dockpreview.js'
+@import 'dockpreview.js'
 
 dockpreview.setAppIconImage();
