@@ -1,0 +1,6 @@
+// Preview in Dock (shift command d)
+
+@import 'dockpreview.coscript';
+
+var setAppIcon = dockpreview.setAppIconImage;
+var restoreAppIcon = dockpreview.restoreAppIconImage;

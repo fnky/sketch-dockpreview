@@ -1,10 +1,15 @@
 @import 'sandbox.js'
 
 var app = NSApplication.sharedApplication();
-
 var temp = {};
 
 var dockpreview = {
+
+    /**
+     * Creates a folder at given path. If the application runs in
+     * sandboxed mode, it will prompt the user for permission.
+     * @param  {String} path The path to create the folder
+     */
     createFolder: function (path) {
         var file_manager = [NSFileManager defaultManager];
         this.runMethodSandbox(path, function () {
@@ -15,6 +20,9 @@ var dockpreview = {
         });
     },
 
+    /**
+     * Creates a temporary folder at a auto-generated temporary path.
+     */
     createTempFolder: function() {
         var guid = NSProcessInfo.processInfo().globallyUniqueString(),
             tmpPath = NSTemporaryDirectory().stringByAppendingPathComponent(guid);
@@ -23,7 +31,12 @@ var dockpreview = {
         temp.path = tmpPath;
     },
 
-    setAppIconImage: function() {
+    /**
+     * Exports artboard to an image file and sets the application icon
+     * to the exported image file.
+     * @param {Object} context The context of the application
+     */
+    setAppIconImage: function(context) {
         var artboard = this.getCurrentArtboard(),
         imgFile = temp.path + '/dockpreview-preview.tmp.png';
         this.runMethodSandbox(imgFile, function () {
@@ -33,7 +46,11 @@ var dockpreview = {
         [app setApplicationIconImage:img];
     },
 
-    restoreAppIconImage: function () {
+    /**
+     * Restores the application icon to the application's icon.
+     * @param {Object} context The context of the application
+     */
+    restoreAppIconImage: function (context) {
         var bundle = NSBundle.mainBundle(),
             icon;
         if (app.applicationName() == 'Sketch Beta') {
@@ -45,6 +62,7 @@ var dockpreview = {
         [app setApplicationIconImage:img];
     },
 
+    // @TODO: Implement status item previewing
     setStatusItemImage: function(statusItem) {
         var artboard = this.getCurrentArtboard(),
         imgFile = temp.path + '/dockpreview-preview.tmp.png';
@@ -60,9 +78,14 @@ var dockpreview = {
         log(statusItem);
     },
 
-    getCurrentArtboard: function () {
-        var page = [doc currentPage]
-        return [page currentArtboard];
+    /**
+     * Returns the current artboard from given context.
+     * @param {Object} context The context of the application
+     */
+    getCurrentArtboard: function (context) {
+        var doc = context.document;
+        var page = doc.currentPage();
+        return page.currentArtboard();
     },
 
     runMethodSandbox: function(path, method) {
