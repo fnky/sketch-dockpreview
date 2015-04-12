@@ -14,15 +14,14 @@
       "identifier": "previewInDock",
       "handler": "setAppIcon",
       "shortcut": "shift command d",
-      "script": "source.cocoascript"
+      "script": "source.coscript"
     },
     {
       "name": "Restore Sketch Icon",
       "identifier": "restoreIcon",
       "handler": "restoreAppIcon",
-      "shortcut": "shift command d",
-      "script": "source.cocoascript"
-    },
+      "script": "source.coscript"
+    }
   ],
   "menu": {
     "items": [
