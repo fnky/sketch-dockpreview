@@ -10,12 +10,12 @@ var Dockpreview = {};
  * sandboxed mode, it will prompt the user for permission.
  * @param  {String} path The path to create the folder
  */
-Dockpreview.createFolder = function () {
-  var file_manager = [NSFileManager defaultManager];
+Dockpreview.createFolder = function (path) {
+  var file_manager = NSFileManager.defaultManager();
 
-  this.runMethodSandbox(path, function () {
+  Dockpreview.runMethodSandbox(path, function () {
     [file_manager createDirectoryAtPath:path
-      withIntermediateDirectories:true
+      withIntermediateDirectories: true
       attributes:nil
       error:nil];
   });
@@ -25,12 +25,11 @@ Dockpreview.createFolder = function () {
  * Creates a temporary folder at a auto-generated temporary path.
  */
 Dockpreview.createTempFolder = function() {
-  log("Create temp folder");
   var guid = NSProcessInfo.processInfo().globallyUniqueString();
   var tmpPath = NSTemporaryDirectory().stringByAppendingPathComponent(guid);
 
-  Dockpreview.createFolder(tmpPath);
   temp.path = tmpPath;
+  Dockpreview.createFolder(temp.path);
 };
 
 Dockpreview.runMethodSandbox = function(path, method) {
@@ -41,24 +40,43 @@ Dockpreview.runMethodSandbox = function(path, method) {
   }
 };
 
+Dockpreview.traverseParent = function traverse(item, obj) {
+  log(item.parentGroup());
+  var parent = item.parentGroup();
+
+  if (item.isMemberOfClass(obj.class)) return item;
+  if (parent.isMemberOfClass(obj.class)) return parent;
+  return traverse(parent, obj);
+}
+
+/**
+ * Gets the current artboard in document.
+ * This is a hacky solution, since the `currentArtboard` method
+ * is deprecated as of Sketch 3.3.
+ * @param  {Object} context The context of the application.
+ * @return {MSArtboardGroup} Returns the current artboard group.
+ */
+Dockpreview.getCurrentArtboard = function(context) {
+  return context.document.currentPage().currentArtboard();
+};
+
 /**
  * Exports artboard to an image file and sets the application icon
  * to the exported image file.
  * @param {Object} context The context of the application
  */
 Dockpreview.setAppIconImage = function(context) {
-  log("Fix");
-  /*var artboard = Dockpreview.getCurrentArtboard(context);
+  var doc = context.document;
+  var artboard = Dockpreview.getCurrentArtboard(context);
+  console.log(artboard);
   var imgFile = temp.path + '/dockpreview-preview.tmp.png';
 
   Dockpreview.runMethodSandbox(imgFile, function () {
-    [context.document saveArtboardOrSlice:artboard toFile:imgFile];
+    doc.saveArtboardOrSlice_toFile(artboard, imgFile);
   });
 
-  // @TODO: Implement pointer?
-  //var imgPtr = MOPointer.alloc().initWithValue_(imgFile);
   var img = NSImage.alloc().initByReferencingFile(imgFile);
-  [app setApplicationIconImage:img];*/
+  app.setApplicationIconImage(img);
 };
 
 /**
@@ -76,7 +94,7 @@ Dockpreview.restoreAppIconImage = function (context) {
   }
 
   img = NSImage.alloc().initByReferencingFile(icon);
-  [app setApplicationIconImage:img];
+  app.setApplicationIconImage(img);
 };
 
 // @TODO: Implement status item previewing
@@ -97,16 +115,6 @@ Dockpreview.setStatusItemImage = function(statusItem, context) {
 
   [statusItem setImage:img];
   log(statusItem);
-};
-
-/**
- * Returns the current artboard from given context.
- * @param {Object} context The context of the application
- */
-Dockpreview.getCurrentArtboard = function (context) {
-  var doc = context.document;
-  var page = doc.currentPage();
-  return page.currentArtboard();
 };
 
 // Create a temp folder
