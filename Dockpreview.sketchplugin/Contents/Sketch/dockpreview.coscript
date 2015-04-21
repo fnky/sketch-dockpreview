@@ -40,15 +40,6 @@ Dockpreview.runMethodSandbox = function(path, method) {
   }
 };
 
-Dockpreview.traverseParent = function traverse(item, obj) {
-  log(item.parentGroup());
-  var parent = item.parentGroup();
-
-  if (item.isMemberOfClass(obj.class)) return item;
-  if (parent.isMemberOfClass(obj.class)) return parent;
-  return traverse(parent, obj);
-}
-
 /**
  * Gets the current artboard in document.
  * This is a hacky solution, since the `currentArtboard` method
@@ -68,7 +59,6 @@ Dockpreview.getCurrentArtboard = function(context) {
 Dockpreview.setAppIconImage = function(context) {
   var doc = context.document;
   var artboard = Dockpreview.getCurrentArtboard(context);
-  console.log(artboard);
   var imgFile = temp.path + '/dockpreview-preview.tmp.png';
 
   Dockpreview.runMethodSandbox(imgFile, function () {
