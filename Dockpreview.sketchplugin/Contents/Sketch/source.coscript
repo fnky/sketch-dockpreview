@@ -1,0 +1,4 @@
+@import 'dockpreview.coscript';
+
+var setAppIcon = Dockpreview.setAppIconImage;
+var restoreAppIcon = Dockpreview.restoreAppIconImage;

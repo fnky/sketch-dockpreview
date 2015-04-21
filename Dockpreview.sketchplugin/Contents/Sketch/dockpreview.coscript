@@ -1,0 +1,121 @@
+@import 'sandbox.js'
+
+var app = NSApplication.sharedApplication();
+var temp = {};
+
+var Dockpreview = {};
+
+/**
+ * Creates a folder at given path. If the application runs in
+ * sandboxed mode, it will prompt the user for permission.
+ * @param  {String} path The path to create the folder
+ */
+Dockpreview.createFolder = function (path) {
+  var file_manager = NSFileManager.defaultManager();
+
+  Dockpreview.runMethodSandbox(path, function () {
+    [file_manager createDirectoryAtPath:path
+      withIntermediateDirectories: true
+      attributes:nil
+      error:nil];
+  });
+};
+
+/**
+ * Creates a temporary folder at a auto-generated temporary path.
+ */
+Dockpreview.createTempFolder = function() {
+  var guid = NSProcessInfo.processInfo().globallyUniqueString();
+  var tmpPath = NSTemporaryDirectory().stringByAppendingPathComponent(guid);
+
+  temp.path = tmpPath;
+  Dockpreview.createFolder(temp.path);
+};
+
+Dockpreview.runMethodSandbox = function(path, method) {
+  if(in_sandbox()) {
+    sandboxAccess.accessFilePath_withBlock_persistPermission(path, method, true);
+  } else {
+    method();
+  }
+};
+
+Dockpreview.traverseParent = function traverse(item, obj) {
+  log(item.parentGroup());
+  var parent = item.parentGroup();
+
+  if (item.isMemberOfClass(obj.class)) return item;
+  if (parent.isMemberOfClass(obj.class)) return parent;
+  return traverse(parent, obj);
+}
+
+/**
+ * Gets the current artboard in document.
+ * This is a hacky solution, since the `currentArtboard` method
+ * is deprecated as of Sketch 3.3.
+ * @param  {Object} context The context of the application.
+ * @return {MSArtboardGroup} Returns the current artboard group.
+ */
+Dockpreview.getCurrentArtboard = function(context) {
+  return context.document.currentPage().currentArtboard();
+};
+
+/**
+ * Exports artboard to an image file and sets the application icon
+ * to the exported image file.
+ * @param {Object} context The context of the application
+ */
+Dockpreview.setAppIconImage = function(context) {
+  var doc = context.document;
+  var artboard = Dockpreview.getCurrentArtboard(context);
+  console.log(artboard);
+  var imgFile = temp.path + '/dockpreview-preview.tmp.png';
+
+  Dockpreview.runMethodSandbox(imgFile, function () {
+    doc.saveArtboardOrSlice_toFile(artboard, imgFile);
+  });
+
+  var img = NSImage.alloc().initByReferencingFile(imgFile);
+  app.setApplicationIconImage(img);
+};
+
+/**
+ * Restores the application icon to the application's icon.
+ * @param {Object} context The context of the application
+ */
+Dockpreview.restoreAppIconImage = function (context) {
+  var bundle = NSBundle.mainBundle();
+  var icon;
+
+  if (app.applicationName() == 'Sketch Beta') {
+    icon = [bundle pathForResource:@"beta" ofType:@"icns"];
+  } else {
+    icon = [bundle pathForResource:@"app" ofType:@"icns"];
+  }
+
+  img = NSImage.alloc().initByReferencingFile(icon);
+  app.setApplicationIconImage(img);
+};
+
+// @TODO: Implement status item previewing
+Dockpreview.setStatusItemImage = function(statusItem, context) {
+  var artboard = Dockpreview.getCurrentArtboard(context);
+  var imgFile = temp.path + '/dockpreview-preview.tmp.png';
+
+  Dockpreview.runMethodSandbox(imgFile, function () {
+    [doc saveArtboardOrSlice:artboard toFile:imgFile];
+  });
+
+  var img = NSImage.alloc().initByReferencingFile(imgFile);
+  var barHeight = app.mainMenu.menuBarHeight;
+  var width = 16;
+
+  [img setTemplate:true];
+  log(img);
+
+  [statusItem setImage:img];
+  log(statusItem);
+};
+
+// Create a temp folder
+Dockpreview.createTempFolder();

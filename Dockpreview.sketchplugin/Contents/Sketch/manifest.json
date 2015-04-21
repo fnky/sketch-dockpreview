@@ -1,0 +1,32 @@
+{
+  "name": "Dockpreview",
+  "description": "Preview your current artboard in the Dock.",
+  "author": "Christian Petersen",
+  "homepage": "http://github.com/fnky/sketch-dockpreview",
+  "version": 1.0,
+  "identifier": "io.cbp.sketch.dockpreview",
+  "updateURL": "https://github.com/downloads/fnky/sketch-dockpreview/sketch-dockpreview.json",
+  "compatibleVersion": 3,
+  "bundleVersion": 1,
+  "commands": [
+    {
+      "name": "Preview In Dock",
+      "identifier": "previewInDock",
+      "handler": "setAppIcon",
+      "shortcut": "shift command d",
+      "script": "source.coscript"
+    },
+    {
+      "name": "Restore Sketch Icon",
+      "identifier": "restoreIcon",
+      "handler": "restoreAppIcon",
+      "script": "source.coscript"
+    }
+  ],
+  "menu": {
+    "items": [
+      "previewInDock",
+      "restoreIcon"
+    ]
+  }
+}

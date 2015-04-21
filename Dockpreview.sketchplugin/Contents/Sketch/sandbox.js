@@ -33,13 +33,13 @@ THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 var AppSandboxFileAccessPersist = {
   keyForBookmarkDataForURL: function(url) {
-    log("AppSandboxFileAccessPersist.keyForBookmarkDataForURL("+url+")")
+    //log("AppSandboxFileAccessPersist.keyForBookmarkDataForURL("+url+")")
     var urlStr = [url absoluteString];
-    log("> " + [NSString stringWithFormat:@"bd_%1$@", urlStr])
+    //log("> " + [NSString stringWithFormat:@"bd_%1$@", urlStr])
     return [NSString stringWithFormat:@"bd_%1$@", urlStr];
   },
   bookmarkDataForURL: function(url) {
-    log("AppSandboxFileAccessPersist.bookmarkDataForURL('"+ url +"')")
+    //log("AppSandboxFileAccessPersist.bookmarkDataForURL('"+ url +"')")
     var defaults = [NSUserDefaults standardUserDefaults];
 
     // loop through the bookmarks one path at a time down the URL
@@ -56,9 +56,9 @@ var AppSandboxFileAccessPersist = {
     return nil;
   },
   setBookmarkData: function(data, url) {
-    log("AppSandboxFileAccessPersist.setBookmarkData")
-    log("data: " + data)
-    log("URL: " + url)
+    //log("AppSandboxFileAccessPersist.setBookmarkData")
+    //log("data: " + data)
+    //log("URL: " + url)
     var defaults = [NSUserDefaults standardUserDefaults];
     var key = AppSandboxFileAccessPersist.keyForBookmarkDataForURL(url);
     [defaults setObject:data forKey:key];
@@ -73,7 +73,7 @@ var AppSandboxFileAccess = {
     return this;
   },
   askPermissionForUrl: function(url) {
-    log("AppSandboxFileAccess.askPermissionForUrl("+url+")")
+    //log("AppSandboxFileAccess.askPermissionForUrl("+url+")")
     // this url will be the url allowed, it might be a parent url of the url passed in
     var allowedUrl;
 
@@ -90,7 +90,7 @@ var AppSandboxFileAccess = {
       }
       path = [path stringByDeletingLastPathComponent];
     }
-    log("Looks like we have a winner: " + path)
+    //log("Looks like we have a winner: " + path)
     url = [NSURL fileURLWithPath:path];
 
     // display the open panel
@@ -117,7 +117,7 @@ var AppSandboxFileAccess = {
     this.persistPermissionURL([NSURL fileURLWithPath:path]);
   },
   persistPermissionURL: function(url) {
-    log("AppSandboxFileAccess.persistPermissionURL("+url+")")
+    //log("AppSandboxFileAccess.persistPermissionURL("+url+")")
     // store the sandbox permissions
     url = [[url URLByStandardizingPath] URLByResolvingSymlinksInPath]
     var bookmarkData = [url bookmarkDataWithOptions:NSURLBookmarkCreationWithSecurityScope
@@ -129,15 +129,15 @@ var AppSandboxFileAccess = {
     }
   },
   accessFilePath_withBlock_persistPermission: function(path, block, persist) {
-    log("AppSandboxFileAccess.accessFilePath_withBlock_persistPermission")
-    log("path: " + path)
+    //log("AppSandboxFileAccess.accessFilePath_withBlock_persistPermission")
+    //log("path: " + path)
     return AppSandboxFileAccess.accessFileURL_withBlock_persistPermission([NSURL fileURLWithPath:path], block, persist);
   },
   accessFileURL_withBlock_persistPermission: function(fileUrl, block, persist) {
-    log("AppSandboxFileAccess.accessFileURL_withBlock_persistPermission")
-    log("fileUrl: " + fileUrl)
-    log("block: " + block)
-    log("persist: " + persist)
+    //log("AppSandboxFileAccess.accessFileURL_withBlock_persistPermission")
+    //log("fileUrl: " + fileUrl)
+    //log("block: " + block)
+    //log("persist: " + persist)
     var allowedUrl = false;
     // standardize the file url and remove any symlinks so that the url we lookup in bookmark data would match a url given by the askPermissionForUrl method
     var fileUrl = [[fileUrl URLByStandardizingPath] URLByResolvingSymlinksInPath];
@@ -145,7 +145,7 @@ var AppSandboxFileAccess = {
     var bookmarkData = AppSandboxFileAccessPersist.bookmarkDataForURL(fileUrl);
 
     if (bookmarkData) {
-      log("Bookmark data found")
+      //log("Bookmark data found")
       // resolve the bookmark data into an NSURL object that will allow us to use the file
       var bookmarkDataIsStalePtr = MOPointer.alloc().init();
       allowedUrl = [NSURL URLByResolvingBookmarkData:bookmarkData options:NSURLBookmarkResolutionWithSecurityScope|NSURLBookmarkResolutionWithoutUI relativeToURL:nil bookmarkDataIsStale:bookmarkDataIsStalePtr error:null];
@@ -154,7 +154,7 @@ var AppSandboxFileAccess = {
         bookmarkData = nil;
       }
     } else {
-      log("No bookmark data found")
+      //log("No bookmark data found")
     }
 
     // if allowed url is nil, we need to ask the user for permission
