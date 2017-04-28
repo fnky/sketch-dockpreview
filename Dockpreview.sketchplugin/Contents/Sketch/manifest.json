@@ -6,8 +6,6 @@
   "version": "1.0.2",
   "identifier": "io.cbp.sketch.dockpreview",
   "updateURL": "https://github.com/downloads/fnky/sketch-dockpreview/sketch-dockpreview.json",
-  "compatibleVersion": 3,
-  "bundleVersion": 1,
   "commands": [
     {
       "name": "Preview In Dock",
