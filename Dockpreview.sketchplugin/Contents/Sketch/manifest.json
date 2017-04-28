@@ -14,13 +14,17 @@
       "identifier": "previewInDock",
       "handler": "setAppIcon",
       "shortcut": "shift command d",
-      "script": "source.coscript"
+      "script": "source.coscript",
+      "description" : "Preview the current artboard in the Dock.",
+      "icon": "icons/previewInDockIcon.png",
     },
     {
       "name": "Restore Sketch Icon",
       "identifier": "restoreIcon",
       "handler": "restoreAppIcon",
-      "script": "source.coscript"
+      "script": "source.coscript",
+      "description" : "Restore the default Sketch icon.",
+      "icon": "icons/restoreIcon.png",
     }
   ],
   "menu": {
