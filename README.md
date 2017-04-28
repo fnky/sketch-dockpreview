@@ -1,35 +1,36 @@
-# Sketch Dockpreview
+<div align="center">
+  <img alt="sketch-dockpreview" src="https://cldup.com/rOmLgFca_c.png" height="163px" />
+</div>
 
-A Sketch plugin that lets you preview your current artboard in the Dock.
+<div align="center">
+  A Sketch plugin that lets you preview your current artboard in the Dock.
+</div>
 
 ## Installation
 
-It's really easy. Just [download Dockpreview](https://github.com/fnky/sketch-dockpreview/releases) or clone the repository and put the Dockpreview `sketchplugin` file in your plugin folder. You can rename the folder if you'd like.
+##### Recommended
 
-## Upgrade Notice
+You can install the plugin from [Sketch Runner](http://sketchrunner.com), [Sketchpacks](https://sketchpacks.com), and [Sketch Toolbox](http://sketchtoolbox.com).
 
-Sketch 3.3 changed plugin system from a folder/file system to a bundle-based approach. If you still use an older version of Sketch, you can still get older Dockpreview from [Releases](https://github.com/fnky/sketch-dockpreview/releases).
-
-Older releases aren't maintained and Dockpreview keeps pushing the way forward.
-
-##### Sketch 3
-
-In Sketch 3 you can reveal your plugins folder in `Plugins > Reveal Plugins Folder...`
-
-##### Sketch from App Store
-
-Place the plugin in `~/Library/Containers/com.bohemiancoding.sketch/Data/Library/Application Support/Sketch/Plugins`
+<a href="http://bit.ly/SketchRunnerWebsite">
+  <img width="160" height="41" src="http://bit.ly/RunnerBadgeBlue">
+</a>
+<a href="https://sketchpacks.com/fnky/sketch-dockpreview/install">
+  <img width="160" height="41" src="http://sketchpacks-com.s3.amazonaws.com/assets/badges/sketchpacks-badge-install.png">
+</a>
 
 
-##### Sketch from Downloads
+##### Manually
 
-Place the plugin in `~/Library/Application Support/Sketch/Plugins`
+Download [Sketch Dockpreview](https://github.com/fnky/sketch-dockpreview/archive/master.zip) and double-click to install.
 
 ## Usage
 
-- `⇧⌘D` (*Shift + Command + D*) - Preview current artboard in Dock.
+Press `⇧⌘D` (*Shift + Command + D*) to preview the current active artboard in the dock.
 
 To restore the icon back to the default Sketch icon, go to `Plugins > Restore Sketch icon`. If you quit Sketch, the icon will automatically restore by itself.
+
+#### Custom Keybinding
 
 If you'd like to change the shortcuts, you can change the `manifest.json` file in `Dockpreview.sketchplugin/Contents/Sketch` and change the `shortcut` to your liking.
 
@@ -37,9 +38,8 @@ If you'd like to change the shortcuts, you can change the `manifest.json` file i
 
 ## Contributing
 
-Found a bug? Perhaps have an idea for Dockpreview, you'd like to see? [Submit an issue or pull request
-](wiki/Contributing) - all your help is needed.
+Contributions are welcomed, [file a pull request](https://github.com/fnky/sketch-dockpreview/issues) or [an issue](https://github.com/fnky/sketch-dockpreview/pulls).
 
 ## License
 
-The MIT License (MIT)
+The MIT License
