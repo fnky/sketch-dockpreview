@@ -1,5 +1,5 @@
 {
     "name": "Sketch Dockpreview",
     "description": "A Sketch plugin that lets you preview your current artboard in the Dock.",
-    "tags": ["dock", "preview"]
+    "tags": ["dock", "preview", "icon", "design"]
 }
