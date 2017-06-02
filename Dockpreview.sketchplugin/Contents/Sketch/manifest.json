@@ -3,7 +3,7 @@
   "description": "Preview your current artboard in the Dock.",
   "author": "Christian Petersen",
   "homepage": "http://github.com/fnky/sketch-dockpreview",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "identifier": "io.cbp.sketch.dockpreview",
   "updateURL": "https://github.com/downloads/fnky/sketch-dockpreview/sketch-dockpreview.json",
   "appcast": "https://api.sketchpacks.com/v1/plugins/io.cbp.sketch.dockpreview/appcast",
