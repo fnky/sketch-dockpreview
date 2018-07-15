@@ -1,5 +1,5 @@
 {
-  "name": "sketch-preview-plugin",
+  "name": "sketch-dockpreview",
   "version": "2.0.0",
   "main": "index.js",
   "author": "Christian Petersen <chrs@cbp.io> (http://cbp.io/)",
@@ -8,25 +8,46 @@
   },
   "license": "MIT",
   "skpm": {
-    "name": "Sketch Dockpreview",
+    "name": "Dockpreview",
     "manifest": "src/manifest.json",
     "main": "Dockpreview.sketchplugin",
     "assets": ["assets/**/*"]
   },
   "scripts": {
+    "prepare":
+      "(rm -rf Dockpreview.sketchplugin || true) && NODE_ENV=production skpm-build",
     "build": "skpm-build",
     "watch": "skpm-build --watch",
     "start": "skpm-build --watch --run",
+    "link": "npm run build && skpm-link",
+    "lint-staged": "lint-staged",
+    "lint": "eslint --quiet .",
+    "prettier":
+      "prettier --single-quote --trailing-comma es5 --no-semi --write",
+    "prettify": "npm run prettier \"./src/**/*.js\"",
     "postinstall": "npm run build && skpm-link"
   },
   "dependencies": {
-    "@skpm/child_process": "^0.2.4",
-    "@skpm/path": "^0.1.0",
-    "@skpm/util": "^0.1.16",
     "mocha-js-delegate": "^0.1.1",
     "sketch-utils": "^0.1.2"
   },
   "devDependencies": {
-    "@skpm/builder": "^0.5.8"
+    "@skpm/builder": "^0.5.8",
+    "eslint": "^4.19.1",
+    "eslint-config-airbnb-base": "^13.0.0",
+    "eslint-config-prettier": "^2.9.0",
+    "eslint-plugin-import": "^2.13.0",
+    "eslint-plugin-prettier": "^2.6.2",
+    "lint-staged": "^7.2.0",
+    "pre-commit": "^1.2.2",
+    "prettier": "^1.13.7"
+  },
+  "pre-commit": ["lint-staged"],
+  "lint-staged": {
+    "*.js": [
+      "prettier",
+      "eslint --quiet --rule 'prettier/prettier: [\"error\", {\"trailingComma\": \"es5\", \"singleQuote\": true}]'",
+      "git add"
+    ]
   }
 }

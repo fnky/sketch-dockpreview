@@ -5,7 +5,8 @@
   "homepage": "http://github.com/fnky/sketch-dockpreview",
   "version": "2.0.0",
   "identifier": "io.cbp.sketch.dockpreview",
-  "compatibleVersion": 3,
+  "compatibleVersion": 4,
+  "bundleVersion": 1,
   "updateURL":
     "https://github.com/downloads/fnky/sketch-dockpreview/sketch-dockpreview.json",
   "icon": "icon.png",
@@ -18,7 +19,6 @@
       "identifier": "previewInDock",
       "shortcut": "shift command d",
       "script": "./previewInDock.js",
-      "handler": "previewInDock",
       "icon": "icons/preview-dock.png"
     },
     {
@@ -27,7 +27,6 @@
       "identifier": "previewInMenuBar",
       "shortcut": "shift command m",
       "script": "./previewInMenuBar.js",
-      "handler": "previewInMenuBar",
       "icon": "icons/preview-menu-bar.png"
     },
     {
@@ -36,7 +35,6 @@
       "identifier": "previewInTouchBar",
       "shortcut": "shift command t",
       "script": "./previewInTouchBar.js",
-      "handler": "previewInTouchBar",
       "icon": "icons/preview-touch-bar.png"
     },
     {
@@ -45,7 +43,6 @@
       "identifier": "restore",
       "shortcut": "shift command r",
       "script": "./restore.js",
-      "handler": "restore",
       "icon": "icons/restore.png"
     }
   ],

@@ -1,5 +1,3 @@
-import sketch from 'sketch';
-
 /**
  * Get the first selected artboard.
  * @param {*} context

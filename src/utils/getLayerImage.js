@@ -1,4 +1,4 @@
-import sketch from 'sketch';
+/* global NSColorSpace, NSImage, MSExportFormat, MSExportRequest, MSExporter */
 
 /**
  * Get an image data as NSData of a layer.

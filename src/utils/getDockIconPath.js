@@ -1,3 +1,4 @@
+/* global NSBundle */
 const isBetaApp = app => app.applicationName() === 'Sketch Beta';
 
 /**

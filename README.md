@@ -8,9 +8,9 @@
 
 ## Installation
 
-##### Recommended
+### Recommended
 
-You can install the plugin from [Sketch Runner](http://sketchrunner.com), [Sketchpacks](https://sketchpacks.com), and [Sketch Toolbox](http://sketchtoolbox.com).
+You can install the plugin from [Sketch Runner](http://sketchrunner.com) and [Sketchpacks](https://sketchpacks.com).
 
 <a href="http://bit.ly/SketchRunnerWebsite">
   <img width="160" height="41" src="http://bit.ly/RunnerBadgeBlue">
@@ -19,19 +19,18 @@ You can install the plugin from [Sketch Runner](http://sketchrunner.com), [Sketc
   <img width="160" height="41" src="http://sketchpacks-com.s3.amazonaws.com/assets/badges/sketchpacks-badge-install.png">
 </a>
 
-##### Manually
+### Manually
 
-Download [Sketch Dockpreview](https://github.com/fnky/sketch-dockpreview/archive/master.zip) and double-click to install.
+Download [Sketch Dockpreview](https://github.com/fnky/sketch-dockpreview/archive/master.zip). Extract and double-click to install.
 
 ## Usage
 
+The following commands are available:
+
 * **Preview in Dock** `⇧⌘D` (_Shift + Command + D_) — Preview the current active artboard in the Dock.
-
 * **Preview in Menu Bar** `⇧⌘M` (_Shift + Command + M_) — Preview the current active artboard in the Menu Bar.
-
 * **Preview in Touch Bar** `⇧⌘T` (_Shift + Command + T_) — Preview the current active artboard in the Touch Bar.
-
-* **Restore** `⇧⌘R` (_Shift + Command + R_) — Restore all icons to their defaults.
+* **Restore** — Restore all icons to their defaults.
 
 To restore the icon back to the default Sketch icon, go to `Plugins > Restore`.
 
@@ -39,7 +38,7 @@ To restore the icon back to the default Sketch icon, go to `Plugins > Restore`.
 
 ## Custom Shortcuts
 
-If the default shortcuts doesn't fit you, it's easy to change:
+To change the default shortcuts:
 
 * Open **Keyboard Preferences** and select the **Shortcuts** tab.
 * Choose **App Shortcuts** from the list.
@@ -53,7 +52,7 @@ Now you can use your newly created shortcut to run the given command.
 
 ## Resources
 
-Here's a list of resources to make your icons better.
+Check out the following resources to make creating icons even easier.
 
 * [Bjango App Icon Templates](https://github.com/bjango/Bjango-Templates) — A comprehensive set of app icon templates.
 * [Icon Slate](https://itunes.apple.com/us/app/icon-slate/id439697913) — An icon export tool with a Sketch plugin.
@@ -62,7 +61,11 @@ Here's a list of resources to make your icons better.
 
 ## Contributing
 
-Contributions are welcomed, [file a pull request](https://github.com/fnky/sketch-dockpreview/issues) or [an issue](https://github.com/fnky/sketch-dockpreview/pulls).
+Contributions are always welcome!
+
+If you any problems or ideas for new features, you can [file an issue](https://github.com/fnky/sketch-dockpreview/issues).
+
+Have a new feature or fixed something? Please [file a pull request](https://github.com/fnky/sketch-dockpreview/pulls).
 
 ## License
 
