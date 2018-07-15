@@ -1,0 +1,62 @@
+{
+  "name": "Dockpreview",
+  "description": "Preview artboards in the dock, menu bar and touch bar.",
+  "author": "Christian Petersen",
+  "homepage": "http://github.com/fnky/sketch-dockpreview",
+  "version": "2.0.0",
+  "identifier": "io.cbp.sketch.dockpreview",
+  "compatibleVersion": 3,
+  "updateURL":
+    "https://github.com/downloads/fnky/sketch-dockpreview/sketch-dockpreview.json",
+  "icon": "icon.png",
+  "appcast":
+    "https://api.sketchpacks.com/v1/plugins/io.cbp.sketch.dockpreview/appcast",
+  "commands": [
+    {
+      "name": "Preview in Dock",
+      "description": "Preview the current artboard in the dock.",
+      "identifier": "previewInDock",
+      "shortcut": "shift command d",
+      "script": "./previewInDock.js",
+      "handler": "previewInDock",
+      "icon": "icons/preview-dock.png"
+    },
+    {
+      "name": "Preview in Menu Bar",
+      "description": "Preview the current artboard in the menu bar.",
+      "identifier": "previewInMenuBar",
+      "shortcut": "shift command m",
+      "script": "./previewInMenuBar.js",
+      "handler": "previewInMenuBar",
+      "icon": "icons/preview-menu-bar.png"
+    },
+    {
+      "name": "Preview in Touch Bar",
+      "description": "Preview the current artboard in the touch bar.",
+      "identifier": "previewInTouchBar",
+      "shortcut": "shift command t",
+      "script": "./previewInTouchBar.js",
+      "handler": "previewInTouchBar",
+      "icon": "icons/preview-touch-bar.png"
+    },
+    {
+      "name": "Restore",
+      "description": "Restore to default icons.",
+      "identifier": "restore",
+      "shortcut": "shift command r",
+      "script": "./restore.js",
+      "handler": "restore",
+      "icon": "icons/restore.png"
+    }
+  ],
+  "menu": {
+    "title": "Dockpreview",
+    "items": [
+      "previewInDock",
+      "previewInMenuBar",
+      "previewInTouchBar",
+      "-",
+      "restore"
+    ]
+  }
+}

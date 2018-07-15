@@ -1,0 +1,9 @@
+Dockpreview.sketchplugin
+
+node_modules
+.npm
+npm-debug.log
+
+.DS_Store
+.idea
+.vscode

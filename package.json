@@ -1,0 +1,32 @@
+{
+  "name": "sketch-preview-plugin",
+  "version": "2.0.0",
+  "main": "index.js",
+  "author": "Christian Petersen <chrs@cbp.io> (http://cbp.io/)",
+  "engines": {
+    "sketch": ">=3.0"
+  },
+  "license": "MIT",
+  "skpm": {
+    "name": "Sketch Dockpreview",
+    "manifest": "src/manifest.json",
+    "main": "Dockpreview.sketchplugin",
+    "assets": ["assets/**/*"]
+  },
+  "scripts": {
+    "build": "skpm-build",
+    "watch": "skpm-build --watch",
+    "start": "skpm-build --watch --run",
+    "postinstall": "npm run build && skpm-link"
+  },
+  "dependencies": {
+    "@skpm/child_process": "^0.2.4",
+    "@skpm/path": "^0.1.0",
+    "@skpm/util": "^0.1.16",
+    "mocha-js-delegate": "^0.1.1",
+    "sketch-utils": "^0.1.2"
+  },
+  "devDependencies": {
+    "@skpm/builder": "^0.5.8"
+  }
+}
