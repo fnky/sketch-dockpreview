@@ -3,7 +3,7 @@
   "description": "Preview your current artboard in the Dock.",
   "author": "Christian Petersen",
   "homepage": "http://github.com/fnky/sketch-dockpreview",
-  "version": "1.0.3",
+  "version": "2.0.0",
   "identifier": "io.cbp.sketch.dockpreview",
   "updateURL": "https://github.com/downloads/fnky/sketch-dockpreview/sketch-dockpreview.json",
   "appcast": "https://api.sketchpacks.com/v1/plugins/io.cbp.sketch.dockpreview/appcast",
@@ -14,7 +14,7 @@
       "handler": "setAppIcon",
       "shortcut": "shift command d",
       "script": "source.coscript",
-      "description" : "Preview the current artboard in the Dock.",
+      "description": "Preview the current artboard in the Dock.",
       "icon": "icons/previewInDockIcon.png"
     },
     {
@@ -22,14 +22,11 @@
       "identifier": "restoreIcon",
       "handler": "restoreAppIcon",
       "script": "source.coscript",
-      "description" : "Restore the default Sketch icon.",
+      "description": "Restore the default Sketch icon.",
       "icon": "icons/restoreIcon.png"
     }
   ],
   "menu": {
-    "items": [
-      "previewInDock",
-      "restoreIcon"
-    ]
+    "items": ["previewInDock", "restoreIcon"]
   }
 }
