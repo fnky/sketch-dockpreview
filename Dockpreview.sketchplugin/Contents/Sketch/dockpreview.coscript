@@ -1,4 +1,6 @@
 @import 'sandbox.js'
+const sketch = require('sketch');
+const UI = require('sketch/ui');
 
 var app = NSApplication.sharedApplication();
 var temp = {};
@@ -47,8 +49,18 @@ Dockpreview.runMethodSandbox = function(path, method) {
  * @param  {Object} context The context of the application.
  * @return {MSArtboardGroup} Returns the current artboard group.
  */
-Dockpreview.getCurrentArtboard = function(context) {
-  return context.document.currentPage().currentArtboard();
+Dockpreview.getCurrentArtboard = function() {
+  let page = sketch.getSelectedDocument().selectedPage;
+  let selection = page.selectedLayers;
+
+  let artboardsWithSelection = selection.reduce((prev, layer) => {
+    if (layer.type == sketch.Types.Artboard) {
+      return prev.concat(layer);
+    }
+    return prev.concat(layer.getParentArtboard() ?? [])
+  }, [])
+
+  return artboardsWithSelection[0]
 };
 
 /**
@@ -57,13 +69,22 @@ Dockpreview.getCurrentArtboard = function(context) {
  * @param {Object} context The context of the application
  */
 Dockpreview.setAppIconImage = function(context) {
-  var doc = context.document;
-  var artboard = Dockpreview.getCurrentArtboard(context);
+  var artboard = Dockpreview.getCurrentArtboard();
   var imgFile = temp.path + '/dockpreview-preview.tmp.png';
 
-  Dockpreview.runMethodSandbox(imgFile, function () {
-    doc.saveArtboardOrSlice_toFile(artboard, imgFile);
+  const wasExported = sketch.export(artboard, {
+    output: temp.path,
+    filename: 'dockpreview-preview.tmp.png',
+    formats: 'png',
+    overwriting: true,
   });
+
+  if (!wasExported) {
+    UI.alert(
+      "Failed to export artboard in Dockpreview",
+      "Make sure to select a single artboard and try again."
+    )
+  }
 
   var img = NSImage.alloc().initByReferencingFile(imgFile);
   app.setApplicationIconImage(img);
